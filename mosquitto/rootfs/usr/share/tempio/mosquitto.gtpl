@@ -27,31 +27,12 @@ persistence_location /data/
 # is busy and cannot read messages fast enough
 max_queued_messages 8192
 
-# Authentication plugin
-auth_plugin /usr/share/mosquitto/go-auth.so
-# Restore pre-7.0 behaviour: allow '/' in client ids and usernames.
-# The addon's ACL file does not use pattern substitution (%c/%u), so
-# mosquitto 2.1's broker-side rejection of +, #, / is not needed here.
-auth_plugin_deny_special_chars false
-auth_opt_backends files,http
-auth_opt_hasher pbkdf2
-auth_opt_cache true
-auth_opt_auth_cache_seconds 300
-auth_opt_auth_jitter_seconds 30
-auth_opt_acl_cache_seconds 300
-auth_opt_acl_jitter_seconds 30
-auth_opt_log_level {{ if .debug }}debug{{ else }}error{{ end }}
-
-# HTTP backend for the authentication plugin
-auth_opt_files_password_path /etc/mosquitto/pw
-auth_opt_files_acl_path /etc/mosquitto/acl
-
-# HTTP backend for the authentication plugin
-auth_opt_http_host 127.0.0.1
-auth_opt_http_port 80
-auth_opt_http_getuser_uri /authentication
-auth_opt_http_superuser_uri /superuser
-auth_opt_http_aclcheck_uri /acl
+# Authentication plugin: local users, then Home Assistant users via the
+# Supervisor. It only authenticates; topic access is unrestricted unless
+# an acl_file is configured (see the customize option).
+plugin /usr/share/mosquitto/ha-auth.so
+plugin_opt_users_file /etc/mosquitto/users
+plugin_opt_cache_seconds 300
 
 {{ if .customize }}
 include_dir /share/{{ .customize_folder }}

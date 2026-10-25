@@ -6,9 +6,6 @@
 # ==============================================================================
 declare -a options
 
-# Wait for NGINX to start before continuing (for authentication handling)
-bashio::net.wait_for 80
-
 options+=(-c /etc/mosquitto/mosquitto.conf)
 
 if bashio::debug; then

@@ -3,8 +3,7 @@
 # ==============================================================================
 # Configures mosquitto
 # ==============================================================================
-readonly ACL="/etc/mosquitto/acl"
-readonly PW="/etc/mosquitto/pw"
+readonly USERS="/etc/mosquitto/users"
 readonly SYSTEM_USER="/data/system_user.json"
 declare cafile
 declare certfile
@@ -33,15 +32,17 @@ else
   service_password=$(bashio::jq "${SYSTEM_USER}" ".addons.password")
 fi
 
+# Local users file for the authentication plugin: "username:hash" lines.
+# Hashes never contain a colon, so usernames may.
+install -m 0600 /dev/null "${USERS}"
+
 # Set up discovery user
 password=$(pw -p "${discovery_password}")
-echo "homeassistant:${password}" >> "${PW}"
-echo "user homeassistant" >> "${ACL}"
+echo "homeassistant:${password}" >> "${USERS}"
 
 # Set up service user
 password=$(pw -p "${service_password}")
-echo "addons:${password}" >> "${PW}"
-echo "user addons" >> "${ACL}"
+echo "addons:${password}" >> "${USERS}"
 
 # Set username and password for the broker
 for login in $(bashio::config 'logins|keys'); do
@@ -58,8 +59,7 @@ for login in $(bashio::config 'logins|keys'); do
   else
       bashio::log.info "Using pre-hashed password for ${username}"
   fi
-  echo "${username}:${password}" >> "${PW}"
-  echo "user ${username}" >> "${ACL}"
+  echo "${username}:${password}" >> "${USERS}"
 done
 
 keyfile="/ssl/$(bashio::config 'keyfile')"

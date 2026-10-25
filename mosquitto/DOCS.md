@@ -56,6 +56,8 @@ logins:
     password: passwd
 ```
 
+Usernames may contain colons, for example for devices that use their MAC address as username.
+
 You can also optionally set a `password` value using the hashed password obtained from the `pw` command (which is present inside the Mosquitto container). If doing so, you must also specify `password_pre_hashed: true` alongside the `username` and `password` values:
 
 ```console
