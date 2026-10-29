@@ -1,7 +1,7 @@
 /*
- * PBKDF2 password hashes in the format used by mosquitto-go-auth.
+ * PBKDF2 password hashing and verification.
  *
- * Two formats are accepted, matching what go-auth's pbkdf2 hasher accepts:
+ * Two formats are accepted:
  *
  *   PBKDF2$<sha512|sha256>$<iterations>$<base64 salt>$<base64 hash>
  *   pbkdf2-sha512$i=<iterations>,l=<keylen>$<base64 salt>$<base64 hash>

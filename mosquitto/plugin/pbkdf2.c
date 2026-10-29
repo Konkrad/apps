@@ -1,5 +1,5 @@
 /*
- * PBKDF2 password hashes in the format used by mosquitto-go-auth.
+ * PBKDF2 password hashing and verification.
  * See pbkdf2.h for the accepted formats.
  */
 #include "pbkdf2.h"

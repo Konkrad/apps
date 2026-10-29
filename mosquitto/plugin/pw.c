@@ -3,9 +3,6 @@
  * for `password_pre_hashed` logins.
  *
  * Usage: pw -p <password> [-i <iterations>]
- *
- * Replaces the `pw` tool that shipped with mosquitto-go-auth and prints
- * hashes in the same format.
  */
 #include <stdio.h>
 #include <stdlib.h>
