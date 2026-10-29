@@ -11,8 +11,8 @@ Follow these steps to get the app (formerly known as add-on) installed on your s
 ## WARNING
 
 The risk of complete loss is possible. Prior to starting this app, ensure a copy
-of your Home Assistant configuration files exists in the Github repository. Otherwise, 
-your local machine configuration folder will be overwritten with an empty configuration 
+of your Home Assistant configuration files exists in the Github repository. Otherwise,
+your local machine configuration folder will be overwritten with an empty configuration
 folder and you will need to restore from a backup.
 
 ## How to use
@@ -42,7 +42,7 @@ App configuration:
 git_branch: master
 git_command: pull
 git_remote: origin
-git_prune: 'false'
+git_prune: "false"
 repository: https://example.com/my_configs.git
 auto_restart: false
 restart_ignore:
@@ -52,8 +52,8 @@ restart_ignore:
 repeat:
   active: false
   interval: 300
-deployment_user: ''
-deployment_password: ''
+deployment_user: ""
+deployment_password: ""
 deployment_key:
   - "-----BEGIN RSA PRIVATE KEY-----"
   - MIIEowIBAAKCAQEAv3hUrCvqGZKpXQ5ofxTOuH6pYSOZDsCqPqmaGBdUzBFgauQM
@@ -82,11 +82,11 @@ Branch name of the Git repo. If left empty, the currently checked out branch wil
 `pull`/`reset`: Command to run. Leave this as `pull` if you are unsure.
 
 - `pull`
-  
+
   - Incorporates changes from a remote repository into the current branch. Will preserve any local changes to tracked files.
 
 - `reset`
-  
+
   - Will execute `git reset --hard` and overwrite any local changes to tracked files and update from the remote repository. **Warning**: Using `reset` WILL overwrite changes to tracked files. You can list all tracked files with this command: `git ls-tree -r master --name-only`.
 
 ### Option: `repository` (required)
@@ -119,7 +119,7 @@ Username to use when authenticating to a repository with a username and password
 
 ### Option: `deployment_password` (optional)
 
-Password to use when authenticating to a repository.  Ignored if `deployment_user` is not set.
+Password to use when authenticating to a repository. Ignored if `deployment_user` is not set.
 
 ### Option: `deployment_key` (optional)
 
@@ -129,12 +129,13 @@ A private SSH key that will be used for communication during Git operations. Thi
 
 The key protocol. Default is `rsa`. Valid protocols are:
 
-- dsa
 - ecdsa
 - ed25519
 - rsa
 
 The protocol is typically known by the suffix of the private key --e.g., a key file named `id_rsa` will be a private key using `rsa` protocol.
+
+**Note**: `dsa` keys do not work since version 8.0.0 of the app. The OpenSSH client shipped with it no longer supports DSA. Replace a `dsa` key with an `ed25519` key.
 
 ## Support
 
@@ -150,6 +151,6 @@ In case you've found a bug, please [open an issue on our GitHub][issue].
 
 [discord]: https://www.home-assistant.io/join-chat
 [forum]: https://community.home-assistant.io
-[issue]: https://github.com/home-assistant/addons/issues
+[issue]: https://github.com/home-assistant/app-git-pull/issues
 [reddit]: https://reddit.com/r/homeassistant
 [repository]: https://github.com/hassio-addons/repository

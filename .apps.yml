@@ -10,14 +10,34 @@ apps:
     repository: home-assistant/app-configurator
     target: configurator
     image: ghcr.io/home-assistant/app-configurator
-  ssh:
-    repository: home-assistant/app-ssh
-    target: ssh
-    image: ghcr.io/home-assistant/app-ssh
+  git_pull:
+    repository: home-assistant/app-git-pull
+    target: git_pull
+    image: ghcr.io/home-assistant/app-git-pull
+  mariadb:
+    repository: home-assistant/app-mariadb
+    target: mariadb
+    image: ghcr.io/home-assistant/app-mariadb
   matter_server:
     repository: home-assistant/app-matter-server
     target: matter_server
     image: ghcr.io/home-assistant/app-matter-server
+  mosquitto:
+    repository: home-assistant/app-mosquitto
+    target: mosquitto
+    image: ghcr.io/home-assistant/app-mosquitto
+  openthread_border_router:
+    repository: home-assistant/app-openthread-border-router
+    target: openthread_border_router
+    image: ghcr.io/home-assistant/app-openthread-border-router
+  ssh:
+    repository: home-assistant/app-ssh
+    target: ssh
+    image: ghcr.io/home-assistant/app-ssh
+  vlc:
+    repository: home-assistant/app-vlc
+    target: vlc
+    image: ghcr.io/home-assistant/app-vlc
   zwave_js:
     repository: home-assistant/app-zwave-js
     target: zwave_js

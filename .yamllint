@@ -5,6 +5,11 @@ extends: default
 ignore: |
   /cec_scan/config.yaml
   /configurator/config.yaml
-  /ssh/config.yaml
+  /git_pull/config.yaml
+  /mariadb/config.yaml
   /matter_server/config.yaml
+  /mosquitto/config.yaml
+  /openthread_border_router/config.yaml
+  /ssh/config.yaml
+  /vlc/config.yaml
   /zwave_js/config.yaml
